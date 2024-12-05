@@ -1,0 +1,72 @@
+[08:06, 05/12/2024] Ismail AI-B 23: using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+public class NewBehaviourScript : MonoBehaviour
+{
+    public float speed = 0.1f;
+    public float y;
+    public int points = 0;
+    public GameObject c1;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        y = transform.position.y;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)){
+            y = 1;
+        }else{
+            y = 0;
+        }
+
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+
+        gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(h, y, v));
+    /*
+     gameObject.transform.position = new Vector3(transform.position.x + h* speed,
+                                                transform.position.y + y,
+                                                transform.position.z + v * speed);
+    */
+    }
+
+    void OnCollisionEnter(Collision collision){
+        if(collision.gameObject.tag == "c1"){
+            points++;
+            Debug.Log("Punkte:" + points);
+            Destroy(collision.gameObject);
+            c1.transform.position = new Vector3(UnityEngine.Random.Range(-13.0f,13.0f),
+                                                1,
+                                                UnityEngine.Random.Range(-14.0f,12.0f));
+            Instantiate(c1);
+
+        }
+    }
+}
+[08:06, 05/12/2024] Ismail AI-B 23: using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FollowCamera : MonoBehaviour
+{
+    public GameObject player;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        gameObject.transform.position = new Vector3(player.transform.position.x,
+                                                    player.transform.position.y + 20.0f,
+                                                    player.transform.position.z);
+    }
+}
