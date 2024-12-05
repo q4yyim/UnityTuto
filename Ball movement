@@ -49,24 +49,4 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 }
-[08:06, 05/12/2024] Ismail AI-B 23: using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class FollowCamera : MonoBehaviour
-{
-    public GameObject player;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        gameObject.transform.position = new Vector3(player.transform.position.x,
-                                                    player.transform.position.y + 20.0f,
-                                                    player.transform.position.z);
-    }
-}
